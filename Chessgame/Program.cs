@@ -9,16 +9,24 @@ Random randNum = new Random((int)DateTime.Now.Ticks);
 
 
 Game game = new();
-Rei Rei = new();
+Torre rei = new();
+Rainha cavalo = new();
+cavalo.corrente.x = 4;
+cavalo.corrente.y = 3;
+
+game.pecas.Add(rei);
+game.pecas.Add(cavalo);
 
 
-Rei.corrente.x = 4;
-Rei.corrente.y = 0;
-game.pecas.Add(Rei);
+rei.corrente.x = 4;
+rei.corrente.y = 0;
 
-Rei.preencheListaPos(J1, J2);
-Rei.imprimirListaPosicoes();
+
+rei.preencheListaPos(J1, J2);
+
 game.imprimirTabuleiro();
+game.mostrarMovimentos(rei);
 
 
 Console.WriteLine("Chess Game o/");
+game.mostrarMovimentos(cavalo);
