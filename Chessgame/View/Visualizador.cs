@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Chessgame.Model.Pecas;
 
-namespace chessGame
+namespace Chessgame.View
 {
-    internal class Game
+    internal class Visualizador
     {
-        public List<Peca> pecas = new();
-
         public void imprimirTabuleiro()
         {
             for (int y = 7; y >= 0; y--)
@@ -20,7 +19,7 @@ namespace chessGame
 
                     if (pecaNaPosicao != null)
                     {
-                        Console.Write(getSimbolo(pecaNaPosicao) + " ");
+                        Console.Write(pecaNaPosicao.Simbolo + " ");
                     }
                     else
                     {
@@ -30,19 +29,10 @@ namespace chessGame
                 Console.WriteLine();
             }
         }
-
-        private string getSimbolo(Peca p)
-        {
-            if (p is Rei) return "R";
-            if (p is Torre) return "T";
-            if (p is Cavalo) return "C";
-            if (p is Bispo) return "B";
-            return "?";
-        }
         public void mostrarMovimentos(Peca pSelecionada)
         {
-            pSelecionada.possiveisMovimentos.Clear(); 
-            pSelecionada.preencheListaPos(pecas, pecas); 
+            pSelecionada.possiveisMovimentos.Clear();
+            pSelecionada.preencheListaPos(pecas, pecas);
 
             for (int y = 7; y >= 0; y--)
             {
@@ -70,10 +60,15 @@ namespace chessGame
                 }
                 Console.WriteLine();
             }
-
-
-
-
+        }
+        public void imprimirListaPosicoes()
+        {
+            foreach (var pos in possiveisMovimentos)
+            {
+                Console.WriteLine($"(X:{pos.x} Y:{pos.y})");
+            }
         }
     }
+}
+}
 }

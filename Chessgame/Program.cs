@@ -1,4 +1,5 @@
-﻿using chessGame;
+﻿using Chessgame.Model;
+using Chessgame.Model.Pecas;
 using System;
 
 
