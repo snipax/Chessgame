@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 0; i < 8; i++)
             {
                 Posicao destino = new Posicao(corrente.x + dx[i], corrente.y + dy[i]);
-                Peca pecaNaPosicao = Tabuleiro.getPeca(destino);
+                if (!tabuleiro.EstaNoLimite(destino))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(destino);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(destino);
@@ -35,6 +40,18 @@ namespace Chessgame.Model.Pecas
                     {
                     }
                 }
+            }
+
+
+
+        }
+
+
+        public override Peca Clone()
+        {
+            Cavalo clone = new Cavalo(this.Cor);
+            clone.corrente = new Posicao(this.corrente.x, this.corrente.y);
+            return clone;
         }
     }
 }

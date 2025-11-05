@@ -21,7 +21,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 0; i < 8; i++)
             {
                 Posicao p = new Posicao(corrente.x + dx[i], corrente.y + dy[i]);
-                    Peca pecaNaPosicao = tabuleiro.getPeca(p);
+                if (!tabuleiro.EstaNoLimite(p))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(p);
                     if (pecaNaPosicao == null)
                     {
                         possiveisMovimentos.Add(p);
@@ -37,6 +41,12 @@ namespace Chessgame.Model.Pecas
                         }
                     }
             }
+        }
+    public override Peca Clone()
+        {
+            Rei clone = new Rei(this.Cor);
+            clone.corrente = new Posicao(this.corrente.x, this.corrente.y);
+            return clone;
         }
     }
 }

@@ -17,8 +17,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 1; i < 8; i++)
             {
                 Posicao NW = new Posicao(corrente.x - i, corrente.y + i);
-
-                Peca pecaNaPosicao = tabuleiro.getPeca(NW);
+                if (!tabuleiro.EstaNoLimite(NW))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(NW);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(NW);
@@ -39,8 +42,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 1; i < 8; i++)
             {
                 Posicao NE = new Posicao(corrente.x + i, corrente.y + i);
-
-                Peca pecaNaPosicao = tabuleiro.getPeca(NE);
+                if (!tabuleiro.EstaNoLimite(NE))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(NE);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(NE);
@@ -61,8 +67,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 1; i < 8; i++)
             {
                 Posicao SW = new Posicao(corrente.x - i, corrente.y - i);
-
-                Peca pecaNaPosicao = tabuleiro.getPeca(SW);
+                if (!tabuleiro.EstaNoLimite(SW))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(SW);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(SW);
@@ -83,8 +92,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 1; i < 8; i++)
             {
                 Posicao SE = new Posicao(corrente.x + i, corrente.y - i);
-
-                Peca pecaNaPosicao = tabuleiro.getPeca(SE);
+                if (!tabuleiro.EstaNoLimite(SE))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(SE);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(SE);
@@ -105,8 +117,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 1; i < 8; i++)
             {
                 Posicao W = new Posicao(corrente.x - i, corrente.y);
-
-                Peca pecaNaPosicao = tabuleiro.getPeca(W);
+                if (!tabuleiro.EstaNoLimite(W))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(W);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(W);
@@ -127,8 +142,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 1; i < 8; i++)
             {
                 Posicao E = new Posicao(corrente.x + i, corrente.y);
-
-                Peca pecaNaPosicao = tabuleiro.getPeca(E);
+                if (!tabuleiro.EstaNoLimite(E))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(E);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(E);
@@ -149,8 +167,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 1; i < 8; i++)
             {
                 Posicao N = new Posicao(corrente.x, corrente.y + i);
-
-                Peca pecaNaPosicao = tabuleiro.getPeca(N);
+                if (!tabuleiro.EstaNoLimite(N))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(N);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(N);
@@ -171,8 +192,11 @@ namespace Chessgame.Model.Pecas
             for (int i = 1; i < 8; i++)
             {
                 Posicao S = new Posicao(corrente.x, corrente.y - i);
-
-                Peca pecaNaPosicao = tabuleiro.getPeca(S);
+                if (!tabuleiro.EstaNoLimite(S))
+                {
+                    break;
+                }
+                Peca pecaNaPosicao = tabuleiro.GetPeca(S);
                 if (pecaNaPosicao == null)
                 {
                     possiveisMovimentos.Add(S);
@@ -190,6 +214,12 @@ namespace Chessgame.Model.Pecas
                     }
                 }
             }
+        }
+    public override Peca Clone()
+        {
+            Rainha clone = new Rainha(this.Cor);
+            clone.corrente = new Posicao(this.corrente.x, this.corrente.y);
+            return clone;
         }
     }
 }

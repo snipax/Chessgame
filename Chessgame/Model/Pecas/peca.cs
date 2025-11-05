@@ -27,15 +27,18 @@ namespace Chessgame.Model.Pecas
             public Posicao corrente { get; protected set; } = new Posicao(0, 0);
             public CorPeca Cor { get; protected set; }
             public bool JaMoveu { get; protected set; }
-            public bool statusPeça { get; private set; }
             public List<Posicao> possiveisMovimentos { get; protected set; } = new();
             public abstract string Simbolo { get; }
             public Peca(CorPeca cor)
             {
                 this.Cor = cor;
                 this.JaMoveu = false;
-                this.statusPeça = true;
             }
+
+        public abstract Peca Clone();
+
+        internal void MarcarComoMovida() => JaMoveu = true;
+
         public abstract void preencheListaPos(Tabuleiro tabuleiro);
         public void LimparMovimentos()
         {
@@ -44,12 +47,8 @@ namespace Chessgame.Model.Pecas
         public virtual void atualizaPosicao(Posicao novaPosicao)
         {
             corrente = novaPosicao;
-            JaMoveu = true;
         }
-        public void atualizaStatus(bool novoStatus)
-        {
-            statusPeça = novoStatus;
-        }
+
 
     }
 }

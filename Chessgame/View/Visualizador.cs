@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Chessgame.Model;
 using Chessgame.Model.Pecas;
 
 namespace Chessgame.View
 {
     internal class Visualizador
     {
+        private readonly Tabuleiro tabuleiro;
+
+        public Visualizador(Tabuleiro tabuleiro)
+        {
+            this.tabuleiro = tabuleiro;
+        }
+
         public void imprimirTabuleiro()
         {
             for (int y = 7; y >= 0; y--)
             {
                 for (int x = 0; x < 8; x++)
                 {
-                    Peca? pecaNaPosicao = pecas.Find(p => p.corrente.x == x && p.corrente.y == y);
+                    Peca? pecaNaPosicao = tabuleiro.GetPeca(new Posicao(x, y));
 
                     if (pecaNaPosicao != null)
                     {
@@ -29,6 +37,8 @@ namespace Chessgame.View
                 Console.WriteLine();
             }
         }
+
+        /*
         public void mostrarMovimentos(Peca pSelecionada)
         {
             pSelecionada.possiveisMovimentos.Clear();
@@ -71,4 +81,7 @@ namespace Chessgame.View
     }
 }
 }
+}
+        */
+    }
 }
