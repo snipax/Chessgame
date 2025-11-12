@@ -36,10 +36,11 @@ namespace Chessgame.Model
             return pecas.Find(pecas => pecas.corrente.x == p.x && pecas.corrente.y == p.y);
         }
 
-//        public Peca GetPeca(int x, int y)
-//        {
-//            return pecas.Find(pecas => pecas.corrente.x == x && pecas.corrente.y == y);
-//        }
+        //        public Peca GetPeca(int x, int y)
+        //        {
+        //            return pecas.Find(pecas => pecas.corrente.x == x && pecas.corrente.y == y);
+        //        }
+
         public bool EstaNoLimite (Posicao p)
         {
             return p.x >= 0 && p.x <= 7 && p.y >= 0 && p.y <= 7;

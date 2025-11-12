@@ -21,6 +21,7 @@ namespace Chessgame.View
         {
             for (int y = 7; y >= 0; y--)
             {
+                Console.Write(y + " ");
                 for (int x = 0; x < 8; x++)
                 {
                     Peca? pecaNaPosicao = tabuleiro.GetPeca(new Posicao(x, y));
@@ -36,13 +37,14 @@ namespace Chessgame.View
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("  0 1 2 3 4 5 6 7");
         }
 
-        /*
+        
         public void mostrarMovimentos(Peca pSelecionada)
         {
             pSelecionada.possiveisMovimentos.Clear();
-            pSelecionada.preencheListaPos(pecas, pecas);
+            pSelecionada.preencheListaPos(tabuleiro);
 
             for (int y = 7; y >= 0; y--)
             {
@@ -51,7 +53,7 @@ namespace Chessgame.View
 
                     if (pSelecionada.corrente.x == x && pSelecionada.corrente.y == y)
                     {
-                        Console.Write(getSimbolo(pSelecionada) + " ");
+                        Console.Write(pSelecionada.Simbolo + " ");
                     }
 
                     else if (pSelecionada.possiveisMovimentos.Any(pos => pos.x == x && pos.y == y))
@@ -61,9 +63,9 @@ namespace Chessgame.View
 
                     else
                     {
-                        Peca outra = pecas.Find(p => p != pSelecionada && p.corrente.x == x && p.corrente.y == y);
+                        Peca outra = tabuleiro.GetPeca(new Posicao(x, y));
                         if (outra != null)
-                            Console.Write(getSimbolo(outra) + " ");
+                            Console.Write((outra.Simbolo) + " ");
                         else
                             Console.Write(". ");
                     }
@@ -71,17 +73,12 @@ namespace Chessgame.View
                 Console.WriteLine();
             }
         }
-        public void imprimirListaPosicoes()
+        public void imprimirListaPosicoes(Peca pSelecionada)
         {
-            foreach (var pos in possiveisMovimentos)
+            foreach (var pos in pSelecionada.possiveisMovimentos)
             {
                 Console.WriteLine($"(X:{pos.x} Y:{pos.y})");
             }
         }
-    }
-}
-}
-}
-        */
     }
 }
