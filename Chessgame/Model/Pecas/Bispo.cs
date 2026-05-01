@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Chessgame.Model.Pecas
 {
+    // Bispo: movimenta em diagonais.
     internal class Bispo : Peca
     {
         public Bispo(CorPeca cor) : base(cor)
         {
         }
         public override string Simbolo => Cor == CorPeca.Branco ? "B" : "b";
+        // Calcula movimentos nas 4 diagonais até encontrar bloqueio.
         public override void preencheListaPos(Tabuleiro tabuleiro)
         {
             for (int i = 1; i < 8; i++)

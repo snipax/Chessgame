@@ -8,6 +8,7 @@ using Chessgame.Model.Pecas;
 
 namespace Chessgame.View
 {
+    // Responsável pela saída no console (tabuleiro e movimentos).
     internal class Visualizador
     {
         private readonly Tabuleiro tabuleiro;
@@ -17,11 +18,12 @@ namespace Chessgame.View
             this.tabuleiro = tabuleiro;
         }
 
+        // Imprime o tabuleiro atual no console.
         public void imprimirTabuleiro()
         {
             for (int y = 7; y >= 0; y--)
             {
-                Console.Write(y + " ");
+                Console.Write(y + 1 + " ");
                 for (int x = 0; x < 8; x++)
                 {
                     Peca? pecaNaPosicao = tabuleiro.GetPeca(new Posicao(x, y));
@@ -37,10 +39,11 @@ namespace Chessgame.View
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  0 1 2 3 4 5 6 7");
+            Console.WriteLine("  A B C D E F G H");
         }
 
         
+        // Mostra os movimentos possíveis com '*' e a peça selecionada.
         public void mostrarMovimentos(Peca pSelecionada)
         {
             pSelecionada.possiveisMovimentos.Clear();
@@ -73,6 +76,7 @@ namespace Chessgame.View
                 Console.WriteLine();
             }
         }
+        // Imprime a lista de movimentos possíveis (debug).
         public void imprimirListaPosicoes(Peca pSelecionada)
         {
             foreach (var pos in pSelecionada.possiveisMovimentos)

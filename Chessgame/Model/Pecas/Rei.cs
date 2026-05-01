@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Chessgame.Model.Pecas
 {
+    // Rei: movimenta 1 casa em qualquer direção.
     internal class Rei : Peca
     {
         public Rei(CorPeca cor) : base(cor)
         {
         }
         public override string Simbolo => Cor == CorPeca.Branco ? "K" : "k";
+        // Calcula movimentos em 8 direções, 1 casa.
         public override void preencheListaPos(Tabuleiro tabuleiro)
         {
             int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
@@ -23,7 +25,7 @@ namespace Chessgame.Model.Pecas
                 Posicao p = new Posicao(corrente.x + dx[i], corrente.y + dy[i]);
                 if (!tabuleiro.EstaNoLimite(p))
                 {
-                    break;
+                    continue;
                 }
                 Peca pecaNaPosicao = tabuleiro.GetPeca(p);
                     if (pecaNaPosicao == null)

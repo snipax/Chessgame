@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Chessgame.Model.Pecas
 {
+    // Torre: movimenta em linha reta (horizontal/vertical).
     internal class Torre : Peca
     {
         public Torre(CorPeca cor) : base(cor)
         {
         }
         public override string Simbolo => Cor == CorPeca.Branco ? "T" : "t";
+        // Calcula movimentos em 4 direções até encontrar bloqueio.
         public override void preencheListaPos(Tabuleiro tabuleiro)
         {
             for (int i = 1; i < 8; i++)
@@ -43,7 +45,7 @@ namespace Chessgame.Model.Pecas
             }
             for (int i = 1; i < 8; i++)
             {
-                Posicao esquerda = new Posicao(corrente.x + i, corrente.y);
+                Posicao esquerda = new Posicao(corrente.x - i, corrente.y);
                 if (!tabuleiro.EstaNoLimite(esquerda))
                 {
                     break;
@@ -69,7 +71,7 @@ namespace Chessgame.Model.Pecas
             }
             for (int i = 1; i < 8; i++)
             {
-                Posicao cima = new Posicao(corrente.x + i, corrente.y);
+                Posicao cima = new Posicao(corrente.x, corrente.y + i);
                 if (!tabuleiro.EstaNoLimite(cima))
                 {
                     break;
@@ -95,7 +97,7 @@ namespace Chessgame.Model.Pecas
             }
             for (int i = 1; i < 8; i++)
             {
-                Posicao baixo = new Posicao(corrente.x + i, corrente.y);
+                Posicao baixo = new Posicao(corrente.x, corrente.y - i);
                 if (!tabuleiro.EstaNoLimite(baixo))
                 {
                     break;

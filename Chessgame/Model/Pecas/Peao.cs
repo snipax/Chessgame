@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chessgame.Model.Pecas
 {
+    // Peão: move para frente e captura na diagonal.
     internal class Peao : Peca
     {
         public Peao(CorPeca cor) : base(cor)
@@ -13,6 +14,7 @@ namespace Chessgame.Model.Pecas
         }
         public override string Simbolo => Cor == CorPeca.Branco ? "P" : "p";
 
+        // Calcula movimentos: 1 para frente, 2 no primeiro movimento, captura na diagonal.
         public override void preencheListaPos(Tabuleiro tabuleiro)
         {
             LimparMovimentos();

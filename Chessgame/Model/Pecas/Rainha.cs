@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Chessgame.Model.Pecas
 {
+    // Rainha: combina movimentos de torre e bispo.
     internal class Rainha : Peca
     {
         public Rainha(CorPeca cor) : base(cor)
         {
         }
         public override string Simbolo => Cor == CorPeca.Branco ? "Q" : "q";
+        // Calcula movimentos em 8 direções até encontrar bloqueio.
         public override void preencheListaPos(Tabuleiro tabuleiro)
         {
             for (int i = 1; i < 8; i++)

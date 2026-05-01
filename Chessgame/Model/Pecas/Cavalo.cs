@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Chessgame.Model.Pecas
 {
+    // Cavalo: movimenta em "L" (2x1) e pode pular peças.
     internal class Cavalo : Peca
     {
         public Cavalo(CorPeca cor) : base(cor)
         {
         }
         public override string Simbolo => Cor == CorPeca.Branco ? "C" : "c";
+        // Calcula os 8 saltos possíveis do cavalo.
         public override void preencheListaPos(Tabuleiro tabuleiro)
         {
             int[] dx = { -2, -1, 1, 2, 2, 1, -1, -2 };
@@ -23,7 +25,7 @@ namespace Chessgame.Model.Pecas
                 Posicao destino = new Posicao(corrente.x + dx[i], corrente.y + dy[i]);
                 if (!tabuleiro.EstaNoLimite(destino))
                 {
-                    break;
+                    continue;
                 }
                 Peca pecaNaPosicao = tabuleiro.GetPeca(destino);
                 if (pecaNaPosicao == null)
